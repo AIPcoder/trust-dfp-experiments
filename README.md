@@ -5,7 +5,7 @@ Malicious Interference* (A. K. Albas and S. Aydın, ICIT 2027 work-in-progress p
 It reproduces every number and both figures of the experiment section, and a script checks the output against
 the numbers printed in the paper.
 
-Repository: https://github.com/AIPcoder/trust-dfp-experiments · Archived release (DOI): to be added.
+Repository: https://github.com/AIPcoder/trust-dfp-experiments · Archived release (DOI): [10.5281/zenodo.23546048](https://doi.org/10.5281/zenodo.23546048).
 
 ## Setup of the experiment
 
