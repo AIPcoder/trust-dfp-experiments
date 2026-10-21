@@ -13,5 +13,5 @@ authors:
     email: sarperaydin@usf.edu
     affiliation: University of South Florida
 repository-code: "https://github.com/AIPcoder/trust-dfp-experiments"
-# doi: "10.5281/zenodo.XXXXXXX"                        # TODO: add after the first GitHub release is archived on Zenodo
+# doi: add after the first release is archived on Zenodo
 license: MIT
