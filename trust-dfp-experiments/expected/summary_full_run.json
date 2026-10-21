@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "runs": 20,
+    "T": 5000
+  },
+  "ring": {
+    "nash_gap_t1_gate": 0.9633713141635372,
+    "nash_gap_T_gate": 0.00917767744176,
+    "nash_gap_T_none": 0.29961067689656823,
+    "pure_ne_runs_gate": 80,
+    "n_runs": 80,
+    "pure_ne_runs_none": 17,
+    "not_pure_runs": [],
+    "est_err_T_gate": 6.588018347037034e-06,
+    "est_err_T_none_min": 0.3841338857314138,
+    "est_err_T_none_max": 0.6899116541554808,
+    "welfare_t1_gate": 0.16892821809835304,
+    "welfare_T_gate": 1.0,
+    "welfare_T_none": 0.4389750368920636,
+    "T_f_mean": 64.5375,
+    "T_f_sd": 24.6388634833265,
+    "T_f_missing": 0,
+    "T_a_mean": 77.375,
+    "T_a_sd": 32.62452106928161,
+    "T_a_runs": 80,
+    "prop2_triples": 1974585,
+    "prop2_violations": 0,
+    "prop2_max_ratio": 0.01877891394699188
+  },
+  "star": {
+    "nash_gap_t1_gate": 0.9877474191167976,
+    "nash_gap_T_gate": 0.013862325291187982,
+    "nash_gap_T_none": 0.5416921396885999,
+    "pure_ne_runs_gate": 76,
+    "n_runs": 80,
+    "pure_ne_runs_none": 9,
+    "not_pure_runs": [
+      {
+        "attack": "collision",
+        "seed": 18,
+        "nash_gap_T": 0.0071024733574494014
+      },
+      {
+        "attack": "byzantine",
+        "seed": 8,
+        "nash_gap_T": 0.004810648478095647
+      },
+      {
+        "attack": "oscillating",
+        "seed": 8,
+        "nash_gap_T": 0.006330320938381595
+      },
+      {
+        "attack": "oscillating",
+        "seed": 20,
+        "nash_gap_T": 0.007995763011147905
+      }
+    ],
+    "est_err_T_gate": 3.197356219806966e-05,
+    "est_err_T_none_min": 0.5009405671272302,
+    "est_err_T_none_max": 0.7945794907714778,
+    "welfare_t1_gate": 0.15924593550563224,
+    "welfare_T_gate": 0.981791054459365,
+    "welfare_T_none": 0.4384287338643049,
+    "T_f_mean": 63.8375,
+    "T_f_sd": 22.869982373189533,
+    "T_f_missing": 0,
+    "T_a_mean": 113.92105263157895,
+    "T_a_sd": 46.13503154582287,
+    "T_a_runs": 76,
+    "prop2_triples": 1974865,
+    "prop2_violations": 0,
+    "prop2_max_ratio": 1.115827593640897e-05
+  },
+  "welfare_T_none_both": 0.4387018853781842
+}

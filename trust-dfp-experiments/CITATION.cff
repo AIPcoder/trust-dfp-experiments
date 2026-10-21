@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper and this repository."
+title: "Numerical experiments for Trustworthy Decentralized Fictitious Play in Potential Games under Malicious Interference"
+type: software
+version: 1.0.0
+authors:
+  - family-names: Albas
+    given-names: Alp Kerem
+    email: akalbas@usf.edu
+    affiliation: University of South Florida
+  - family-names: Aydın
+    given-names: Sarper
+    email: sarperaydin@usf.edu
+    affiliation: University of South Florida
+repository-code: "https://github.com/<OWNER>/<REPO>"   # TODO: fill in once the repository exists
+# doi: "10.5281/zenodo.XXXXXXX"                        # TODO: add after the first GitHub release is archived on Zenodo
+license: MIT
