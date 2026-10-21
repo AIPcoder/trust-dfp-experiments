@@ -4,7 +4,7 @@ Code that reproduces every number and both figures in the numerical-experiment s
 **"Trustworthy Decentralized Fictitious Play in Potential Games under Malicious Interference"**
 (A. K. Albas, S. Aydın; ICIT 2027 work-in-progress paper).
 
-> Repository: `https://github.com/<OWNER>/<REPO>` (to be filled in) · Archived release (DOI): *to be added after the first release*
+> Repository: `https://github.com/AIPcoder/trust-dfp-experiments` · Archived release (DOI): *to be added after the first release*
 
 Anyone can rerun the study with three commands and check the output against the paper automatically.
 
@@ -22,7 +22,7 @@ Anyone can rerun the study with three commands and check the output against the 
 ## Quick start
 
 ```bash
-git clone https://github.com/<OWNER>/<REPO>.git && cd <REPO>
+git clone https://github.com/AIPcoder/trust-dfp-experiments.git && cd trust-dfp-experiments
 pip install -r requirements.txt          # Python >= 3.10; numpy, scipy, matplotlib, pytest
 make test                                # 6 tests, about 10 s
 make full                                # the paper's setting (320 simulations); see runtime below
