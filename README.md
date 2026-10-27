@@ -2,10 +2,52 @@
 
 Code for the numerical experiments in *Trustworthy Decentralized Fictitious Play in Potential Games under
 Malicious Interference* (A. K. Albas and S. Aydın, ICIT 2027 work-in-progress paper).
-It reproduces every number and both figures of the experiment section, and a script checks the output against
-the numbers printed in the paper.
 
-Repository: https://github.com/AIPcoder/trust-dfp-experiments · Archived release (DOI): [10.5281/zenodo.23546048](https://doi.org/10.5281/zenodo.23546048).
+Repository: https://github.com/AIPcoder/trust-dfp-experiments · Archived releases: concept DOI (all versions)
+[10.5281/zenodo.23546047](https://doi.org/10.5281/zenodo.23546047); version 1.0.0 is
+[10.5281/zenodo.23546048](https://doi.org/10.5281/zenodo.23546048).
+
+The repository contains two studies. **They are different, and only the first is in the submitted paper.**
+
+| | Setting | Scripts | Check |
+| --- | --- | --- | --- |
+| **Submitted paper** (Sec. IV, Fig. 1) | ring, 2 attacks (equivocation, oscillating), with/without trust gate, 100 seeds, T = 5000 | `run_m1.py`, `plot_m1.py` | `verify_submitted.py` |
+| **Extended study** (not in the submitted paper) | ring and star, 4 attacks, 20 seeds, T = 5000, Proposition 2 check | `run_experiments.py` and the scripts after it | `verify_paper_numbers.py` |
+
+## Reproducing the submitted paper
+
+Requires Python 3.10 or newer.
+
+```bash
+git clone https://github.com/AIPcoder/trust-dfp-experiments.git
+cd trust-dfp-experiments
+pip install -r requirements.txt
+python scripts/run_m1.py --seeds 100 --steps 5000 --workers 2 --out results_m1   # 400 simulations, about 12 min on 2 cores
+python scripts/plot_m1.py --out results_m1        # fig_ring_100_horizontal.pdf / .png
+python scripts/verify_submitted.py --out results_m1
+```
+
+With this code the 100-seed run gives the values printed in the paper: mean Nash gap at t = 5000 of
+0.0047 (equivocation) and 0.0136 (oscillating) with the trust gate, 0.174 and 0.463 without it; mean estimation
+error with the trust gate 2.8e-6 and 9.4e-6 (below 1e-5); all 100 runs with the trust gate end in a pure NE.
+Without the trust gate 71/100 (equivocation) and 0/100 (oscillating) runs end in a pure NE. `verify_submitted.py`
+compares the run with the paper's numbers (typed in by hand) and prints PASS/FAIL. Seeds are 1 to 100 and are
+fixed, so the same library versions give the same results; other versions can change the last digits.
+`expected/submitted_summary.json` and `expected/fig_ring_100_horizontal.pdf` hold the reference output of this run;
+`expected/reference_original_figure.pdf` is the figure of the submitted paper, for visual comparison.
+
+Definitions. **Nash gap**: for the empirical-frequency profile `f` (each agent's long-run action frequencies),
+`max_i [ max_k U_i(k) - sum_k f_i(k) U_i(k) ]`, where `U_i(k) = prod_{j != i}(1 - f_j(k)) / d_k` is agent *i*'s
+expected utility for target *k* against the other agents' independent mixed strategies; it is 0 exactly at a
+Nash equilibrium. **Estimation error**: average Euclidean distance between each agent's local estimate of
+another agent's frequencies and the true frequencies. **Ends in a pure NE**: the actions of the last round are
+one-to-one (with 5 agents and 5 targets these are exactly the pure NE); `pure_ne_from` in `m1_results.npz`
+stores the first round from which every round is a pure NE (-1 if the last round is not one).
+
+## Extended study (not part of the submitted paper)
+
+The sections below describe the extended study. Its results, including the Proposition 2 check, the star
+network and the welfare and settling-time figures, are not in the submitted paper.
 
 ## Setup of the experiment
 
@@ -30,7 +72,7 @@ scipy 1.18.1 and matplotlib 3.11.2.
 git clone https://github.com/AIPcoder/trust-dfp-experiments.git
 cd trust-dfp-experiments
 pip install -r requirements.txt
-python -m pytest -q                                    # 6 tests, about 10 s
+python -m pytest -q                                    # 8 tests, about 12 s
 python scripts/run_experiments.py --runs 20 --T 5000 --out results   # 320 simulations
 python scripts/make_gaps.py --out results
 python scripts/summarize.py --out results              # prints every headline number
@@ -72,7 +114,7 @@ gap at t = 5000 between 0.005 and 0.008) instead of a one-to-one assignment.
 This comes from fictitious play in a symmetric game, not from the trust gate or the attacker: plain DFP
 without a malicious agent also fails on the star (`scripts/baseline_no_attacker.py` gives 62/80 pure-NE runs at
 T = 3000, against 80/80 on the ring). The ring has no such symmetric pair. Breaking the tie would require a
-change to the algorithm, such as randomized tie-breaking, which the paper lists as future work.
+change to the algorithm, such as randomized tie-breaking, which is left for future work.
 
 ## Code guide
 
@@ -81,9 +123,10 @@ change to the algorithm, such as randomized tie-breaking, which the paper lists 
 | `trustdfp/simulator.py` | The simulator. `dfp_step` is one round of Algorithm 1: attacker content, trust observations, trust scores `β`, trusted set, weights, averaging, best response, frequency update. |
 | `trustdfp/potential_game.py` | The exact-potential game, its potential, and the NE test. |
 | `trustdfp/metrics.py` | Nash gap of the empirical frequencies. |
-| `scripts/run_experiments.py` | Runs all simulations, including the Proposition 2 check. |
+| `scripts/run_m1.py`, `plot_m1.py`, `verify_submitted.py` | The submitted paper's experiment, its figure, and the check against its numbers. |
+| `scripts/run_experiments.py` | Extended study: runs all simulations, including the Proposition 2 check. |
 | `scripts/make_gaps.py`, `summarize.py`, `make_figures.py` | Nash gaps, statistics, figures. |
-| `scripts/verify_paper_numbers.py` | Compares a full run with the numbers in the paper. |
+| `scripts/verify_paper_numbers.py` | Compares an extended-study run with the numbers reported for that study. |
 | `scripts/check_potential.py` | Checks the exact-potential identity on all 5^5 = 3125 action profiles. |
 | `scripts/baseline_no_attacker.py` | Plain DFP without a malicious agent. |
 | `tests/` | Potential-game identity, NE characterization, end-to-end run, regression check. |
@@ -98,6 +141,20 @@ Time index: the loop counter `t` in `simulator.dfp_step` starts at 1, so it equa
   the ring and 1e-5 on the star.
 * Only 5 agents and 5 targets, one malicious agent, ring and star networks.
 
+## Credits and AI assistance
+
+The algorithm, the game, the attack models, the experimental design and the paper are the authors' work
+(Alp Kerem Albas and Sarper Aydın), and the simulator was written by the authors. The structure of
+`scripts/run_m1.py` and `scripts/plot_m1.py` follows the 100-seed runner and plotting script by Sarper Aydın.
+
+Claude (Anthropic) was used as a coding assistant for preparing this repository for release: refactoring the
+code, writing the unit and regression tests in `tests/`, and drafting parts of this README. The authors designed
+the algorithm and experiments, reviewed all code and tests, and ran every experiment.
+
+The methods the code implements are cited in the paper: decentralized fictitious play (Eksin and Ribeiro),
+trust-based consensus filtering (Akgün et al.), spoof-resilient networks (Gil et al.) and exact potential games
+(Monderer and Shapley, 1996). Libraries: NumPy, SciPy, Matplotlib, pytest.
+
 ## Citation and license
 
-See `CITATION.cff` and `CITATION.bib`. MIT license (`LICENSE`).
+See `CITATION.cff`, `CITATION.bib` and `CHANGELOG.md`. MIT license (`LICENSE`).

@@ -1,0 +1,33 @@
+{
+  "setting": "ring, 100 seeds (1-100), T=5000",
+  "results": {
+    "equivocation|trust_only": {
+      "nash_gap_T_mean": 0.00471,
+      "nash_gap_T_median": 0.00408,
+      "est_error_T_mean": 2.772e-06,
+      "runs_ending_in_pure_NE": 100,
+      "n_runs": 100
+    },
+    "equivocation|none": {
+      "nash_gap_T_mean": 0.17398,
+      "nash_gap_T_median": 0.01788,
+      "est_error_T_mean": 0.6601,
+      "runs_ending_in_pure_NE": 71,
+      "n_runs": 100
+    },
+    "oscillating|trust_only": {
+      "nash_gap_T_mean": 0.01356,
+      "nash_gap_T_median": 0.01293,
+      "est_error_T_mean": 9.376e-06,
+      "runs_ending_in_pure_NE": 100,
+      "n_runs": 100
+    },
+    "oscillating|none": {
+      "nash_gap_T_mean": 0.46262,
+      "nash_gap_T_median": 0.45388,
+      "est_error_T_mean": 0.7136,
+      "runs_ending_in_pure_NE": 0,
+      "n_runs": 100
+    }
+  }
+}

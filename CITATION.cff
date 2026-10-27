@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite the paper and this repository."
 title: "Numerical experiments for Trustworthy Decentralized Fictitious Play in Potential Games under Malicious Interference"
 type: software
-version: 1.0.0
+version: 1.1.0
 authors:
   - family-names: Albas
     given-names: Alp Kerem
@@ -13,5 +13,5 @@ authors:
     email: sarperaydin@usf.edu
     affiliation: University of South Florida
 repository-code: "https://github.com/AIPcoder/trust-dfp-experiments"
-doi: "10.5281/zenodo.23546048"
+doi: "10.5281/zenodo.23546047"
 license: MIT
