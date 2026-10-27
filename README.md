@@ -157,4 +157,4 @@ trust-based consensus filtering (Akgün et al.), spoof-resilient networks (Gil e
 
 ## Citation and license
 
-See `CITATION.cff`, `CITATION.bib` and `CHANGELOG.md`. MIT license (`LICENSE`).
+See `CITATION.cff`, `CITATION.bib`, and MIT license (`LICENSE`).
